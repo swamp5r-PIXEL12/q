@@ -1,0 +1,33 @@
+
+name: Build GMod Stretch DLL
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+
+      - name: Compile DLL
+        shell: cmd
+        run: |
+          cl /nologo /std:c++17 /O2 /EHsc /LD /DUNICODE /D_UNICODE /Fe:GModStretch.dll GModStretch.cpp user32.lib gdi32.lib
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: GModStretch-Windows-x64
+          path: |
+            GModStretch.dll
+            start_menu.bat
+          if-no-files-found: error
