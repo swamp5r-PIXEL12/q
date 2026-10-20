@@ -1,0 +1,3 @@
+Project updated using the four supplied x64 DLL files.
+CMake requires Windows/MSVC and network access to FetchContent dependencies.
+Actual compilation and in-game injection are NOT tested in this environment.

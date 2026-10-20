@@ -1,0 +1,19 @@
+BINARIES CHECKED - GMOD x64
+Source files supplied in this chat, not bundled in project.
+
+client(1).dll: size=10,142,032 machine=0x8664 sha256=28bf1c13005e2fe084806fc58c853b7323512322c239d51b53e399857551e312
+  interface string matches: VEngineClient015, VClient017, VClientEntityList003, VEngineModel016, VMaterialSystem080
+engine.dll: size=5,701,968 machine=0x8664 sha256=f3e4775828b07dfb4d49e68cc9dcd8ac3cb38355623a5a7bcbe359d3ffe37580
+  interface string matches: VEngineClient015, VClient017, VClientEntityList003, VEngineModel016, VMaterialSystem080
+materialsystem.dll: size=1,160,008 machine=0x8664 sha256=16a7d16e0eaf2c2287ca504a4876cfdd3322ad49eea9253f31273f4dd4237a92
+  interface string matches: VMaterialSystem080
+stdshader_dx9.dll: size=1,098,064 machine=0x8664 sha256=c9814355c1bdae82d1156e655795c1c0bc2086756cccc9c641fb2f2fde9bf546
+  interface string matches: none relevant
+
+Confirmed: all modules use PE machine AMD64 (0x8664).
+Interface version strings are only binary evidence, not proof of live CreateInterface success.
+GModESP.cpp calls GetProcAddress(CreateInterface) at runtime and discovers player field offsets in RecvTables.
+No 32-bit client offsets were transferred into this x64 project.
+The stdshader_dx9.dll file is not the same as shaderapidx9.dll or d3d9.dll.
+DrawModelExecute/model-render vtable index, material vtable indexes, and game rendering behavior require live testing.
+Windows DLL compilation has not been run in this Linux environment.

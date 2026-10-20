@@ -1,0 +1,22 @@
+name: Build GMod ESP Chams x64
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure (MSVC x64, ImGui, MinHook)
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+      - name: Build DLL
+        run: cmake --build build --config Release --parallel
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: GMod-ESP-Chams-x64-F11
+          path: build/Release/GModESP_Chams_x64.dll
+          if-no-files-found: error
